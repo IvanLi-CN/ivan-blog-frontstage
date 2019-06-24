@@ -1,16 +1,17 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
+import {ListIndexComponent} from './list-index/list-index.component';
 
 const routes: Routes = [
   {
     path: '',
-    loadChildren: './blog/blog.module#BlogModule',
-  },
+    component: ListIndexComponent
+  }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule {
+export class ListRoutingModule {
 }
