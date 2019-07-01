@@ -1,0 +1,80 @@
+# This file was generated based on ".graphqlconfig". Do not edit manually.
+
+schema {
+  query: Query
+  mutation: Mutation
+}
+
+type Article {
+  createdAt: DateTime!
+  htmlContent: String!
+  id: ID!
+  mdContent: String!
+  publishedAt: DateTime!
+  slug: String!
+  summary: String
+  tags: [Tag!]!
+  title: String!
+  updatedAt: DateTime!
+}
+
+type Mutation {
+  createArticle(createArticleInput: CreateArticleInput!): Article!
+  createTag(createTagInput: CreateTagInput!): Tag!
+  removeArticle(id: Int!): Boolean
+  removeTag(id: Int!): Boolean
+  updateArticle(id: Int!, updateArticleInput: UpdateArticleInput!): Article
+  updateTag(id: Int!, updateTagInput: UpdateTagInput!): Tag
+}
+
+type Query {
+  count(pageIndex: Int = 1, pageSize: Int = 10, title: String): Int!
+  getArticle(id: Int, slug: String, title: String): Article!
+  getArticles(pageIndex: Int = 1, pageSize: Int = 10, title: String): [Article!]!
+  getTag(id: Int, name: String): Tag!
+  getTags(name: String, pageIndex: Int = 1, pageSize: Int = 10): [Tag!]!
+}
+
+type Tag {
+  articles: [Article!]
+  id: ID!
+  isAvailable: Boolean!
+  isVisible: Boolean!
+  name: String!
+}
+
+input CreateArticleInput {
+  htmlContent: String
+  mdContent: String
+  publishedAt: DateTime
+  slug: String!
+  summary: String
+  tagIds: [Int!] = []
+  title: String!
+}
+
+input CreateTagInput {
+  isAvailable: Boolean = true
+  isVisible: Boolean = true
+  name: String!
+}
+
+input UpdateArticleInput {
+  htmlContent: String
+  mdContent: String
+  publishedAt: DateTime
+  slug: String!
+  summary: String
+  tagIds: [Int!]
+  title: String
+}
+
+input UpdateTagInput {
+  isAvailable: Boolean = true
+  isVisible: Boolean = true
+  name: String!
+}
+
+
+"The javascript `Date` as string. Type represents date and time as the ISO Date string."
+scalar DateTime

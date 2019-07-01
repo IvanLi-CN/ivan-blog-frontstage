@@ -1,0 +1,29 @@
+:host {
+  flex: auto;
+  display: flex;
+  flex-flow: column;
+}
+
+#article {
+  display: flex;
+  flex-flow: column;
+  padding: 10px;
+  flex: auto;
+  height: 100%;
+
+  app-article-view-text {
+    flex: auto;
+  }
+
+  app-article-view-footer {
+    border-top: 1px silver solid;
+  }
+}
+
+#article-not-found {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 50vh;
+  color: indianred;
+}

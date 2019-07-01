@@ -1,0 +1,8 @@
+<article *ngIf="isLoading || article" id="article">
+  <app-article-view-header [article]="article"></app-article-view-header>
+  <app-article-view-text [article]="article"></app-article-view-text>
+  <app-article-view-footer [article]="article"></app-article-view-footer>
+</article>
+<section *ngIf="!(isLoading || article)" id="article-not-found">
+  <p>找不到该文章！</p>
+</section>

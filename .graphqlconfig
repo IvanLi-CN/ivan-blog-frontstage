@@ -1,0 +1,15 @@
+{
+  "name": "Ivan's Blog GraphQL Schema",
+  "schemaPath": "ivan-blog-schema.graphql",
+  "extensions": {
+    "endpoints": {
+      "Ivan's Blog GraphQL Endpoint": {
+        "url": "http://ib.test/api/graphql",
+        "headers": {
+          "user-agent": "JS GraphQL"
+        },
+        "introspect": true
+      }
+    }
+  }
+}

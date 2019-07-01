@@ -1,9 +1,13 @@
+@require "../../variables.styl";
+
 #blog {
   align-items: stretch;
   min-height: 100vh;
 
   aside {
+    opacity: .0;
     background-color: rgba(#ddd, .5);
+    background: primary-bg-color;
     position: fixed;
     top: 0;
     bottom: 0;
@@ -29,11 +33,20 @@
     margin-left: 350px;
     display: flex;
     flex-flow: column;
+    min-height: 100vh;
 
-    #main-content {
+    #blog-main-content {
       flex: auto;
       background-color: rgba(#fafafa, .7);
-      margin-bottom: 100px;
+      margin-bottom: 70px;
+      hieght: 100%;
+
+      display: flex;
+      flex-flow: column;
+
+      & > * {
+        hieght: 100%;
+      }
     }
 
     & > footer {

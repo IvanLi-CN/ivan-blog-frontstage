@@ -1,0 +1,47 @@
+.article-preview-card {
+  background-color: #fff;
+  padding: 20px;
+  margin: 30px 20px;
+  border-radius: 10px;
+  box-shadow: 1px 1px 5px rgba(#222, .1);
+
+  & > header {
+    color: darken(silver, 60%);
+    display: flex;
+
+    h3 {
+      margin: 0;
+      font-size: 1.2em;
+      font-weight inherit;
+    }
+  }
+
+  & > footer {
+    font-size: smaller;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    dl {
+      display: flex;
+    }
+
+    dt {
+      width: auto;
+      color: silver;
+
+      &::after {
+        content: '：';
+      }
+    }
+
+    dd {
+      margin-left: 5px;
+      color: darken(silver, 20%);
+    }
+  }
+
+  & > p {
+    min-height: 3em;
+  }
+}

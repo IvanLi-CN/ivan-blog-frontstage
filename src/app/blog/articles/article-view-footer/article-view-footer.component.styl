@@ -1,0 +1,26 @@
+footer {
+  font-size: smaller;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px 5px;
+
+  dl {
+    display: flex;
+    margin: 0;
+  }
+
+  dt {
+    width: auto;
+    color: silver;
+
+    &::after {
+      content: '：';
+    }
+  }
+
+  dd {
+    margin-left: 5px;
+    color: darken(silver, 20%);
+  }
+}
