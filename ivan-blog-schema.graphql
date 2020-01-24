@@ -5,10 +5,36 @@ schema {
   mutation: Mutation
 }
 
+type Account {
+  account: String!
+  createdAt: DateTime!
+  id: ID!
+  isActive: Boolean!
+  nick: String!
+  systemRole: String!
+  updatedAt: DateTime!
+}
+
+type AccountInfoDto {
+  account: String!
+  id: Float!
+  nick: String!
+  systemRole: String!
+}
+
+type AppBaseEntity {
+  createdAt: DateTime!
+  id: ID!
+  updatedAt: DateTime!
+}
+
 type Article {
+  author: Account!
+  authorId: Float!
   createdAt: DateTime!
   htmlContent: String!
   id: ID!
+  isPublic: Boolean!
   mdContent: String!
   publishedAt: DateTime!
   slug: String!
@@ -19,18 +45,28 @@ type Article {
 }
 
 type Mutation {
+  adminLogin(account: String!, password: String!): Account!
   createArticle(createArticleInput: CreateArticleInput!): Article!
   createTag(createTagInput: CreateTagInput!): Tag!
+  memberLogin(account: String!, password: String!): Account!
+  registerAccount(registerAccountInput: RegisterAccountInput!): Account!
+  removeAccount(id: Int, ids: [Int!]): Boolean!
   removeArticle(id: Int!): Boolean
   removeTag(id: Int!): Boolean
+  updateAccount(id: Float!, updateAccountInput: UpdateAccountInput!): Account!
   updateArticle(id: Int!, updateArticleInput: UpdateArticleInput!): Article
   updateTag(id: Int!, updateTagInput: UpdateTagInput!): Tag
 }
 
 type Query {
-  count(pageIndex: Int = 1, pageSize: Int = 10, title: String): Int!
-  getArticle(id: Int, slug: String, title: String): Article!
-  getArticles(pageIndex: Int = 1, pageSize: Int = 10, title: String): [Article!]!
+  account(id: Int!): [Account!]!
+  accounts(account: String, isActive: Boolean, nick: String, pageIndex: Int = 1, pageSize: Int = 10): [Account!]!
+  accountsCount(account: String, isActive: Boolean, nick: String, pageIndex: Int = 1, pageSize: Int = 10): Int!
+  article(id: Int, slug: String, title: String): Article!
+  articles(authorId: ID, isPublic: Boolean, pageIndex: Int = 1, pageSize: Int = 10, slug: String, title: String): [Article!]!
+  articlesCount(authorId: ID, isPublic: Boolean, pageIndex: Int = 1, pageSize: Int = 10, slug: String, title: String): Int!
+  count(name: String, pageIndex: Int = 1, pageSize: Int = 10): Int!
+  currAccount: AccountInfoDto!
   getTag(id: Int, name: String): Tag!
   getTags(name: String, pageIndex: Int = 1, pageSize: Int = 10): [Tag!]!
 }
@@ -44,7 +80,9 @@ type Tag {
 }
 
 input CreateArticleInput {
+  authorId: ID!
   htmlContent: String
+  isPublic: Boolean!
   mdContent: String
   publishedAt: DateTime
   slug: String!
@@ -59,8 +97,22 @@ input CreateTagInput {
   name: String!
 }
 
+input RegisterAccountInput {
+  account: String!
+  nick: String!
+  password: String!
+}
+
+input UpdateAccountInput {
+  account: String
+  nick: String
+  password: String
+}
+
 input UpdateArticleInput {
+  authorId: Float!
   htmlContent: String
+  isPublic: Boolean
   mdContent: String
   publishedAt: DateTime
   slug: String!

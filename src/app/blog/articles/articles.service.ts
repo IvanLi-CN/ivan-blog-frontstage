@@ -9,8 +9,8 @@ import {QueryArticleParamsDto} from './dtos/query-article-params.dto';
 import {Article} from './models/article.model';
 
 const GetArticlesQuery = gql`
-  query GetArticles($pageSize: Int, $pageIndex: Int, $title: String) {
-    getArticles(
+  query articles($pageSize: Int, $pageIndex: Int, $title: String) {
+    articles(
       pageSize: $pageSize,
       pageIndex: $pageIndex,
       title: $title,
@@ -28,8 +28,8 @@ const GetArticlesQuery = gql`
   }
 `;
 const GetArticleQuery = gql`
-  query GetArticle($slug: String, $id: Int, $title: String) {
-    getArticle(
+  query article($slug: String, $id: Int, $title: String) {
+    article(
       id: $id,
       slug: $slug,
       title: $title,
@@ -60,18 +60,18 @@ export class ArticlesService {
   }
 
   queryArticles(params: QueryArticlesParamsDto) {
-    return this.apollo.watchQuery<{ getArticles: Array<ArticleSummary> }, QueryArticlesParamsDto>({
+    return this.apollo.watchQuery<{ articles: Array<ArticleSummary> }, QueryArticlesParamsDto>({
       query: GetArticlesQuery,
       variables: params,
-    }).valueChanges.pipe(map(res => res.data.getArticles));
+    }).valueChanges.pipe(map(res => res.data.articles));
   }
 
   queryArticle(params: QueryArticleParamsDto) {
-    return this.apollo.watchQuery<{ getArticle: Article }, QueryArticleParamsDto>({
+    return this.apollo.watchQuery<{ article: Article }, QueryArticleParamsDto>({
       query: GetArticleQuery,
       errorPolicy: 'ignore',
       variables: params,
     }).valueChanges.pipe(
-      map(res => res.data && res.data.getArticle));
+      map(res => res.data && res.data.article));
   }
 }
