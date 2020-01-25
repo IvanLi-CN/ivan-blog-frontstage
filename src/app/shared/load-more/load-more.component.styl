@@ -1,0 +1,27 @@
+.load-more {
+  display: flex;
+  justify-content: center;
+  color: gray;
+  user-select: none;
+
+  a {
+    display: inline-flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    width: 20em;
+
+    &::before, &::after {
+      display: inline-block;
+      content: '';
+      width: 5em;
+      height: 1px;
+      background: linear-gradient(to left, rgba(gray) 70%, rgba(gray, 0.1));
+      transform: scaleY(0.5);
+    }
+
+    &::after {
+      background: linear-gradient(to right, rgba(gray) 70%, rgba(gray, 0.1));
+    }
+  }
+}

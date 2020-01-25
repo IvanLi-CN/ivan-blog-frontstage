@@ -1,8 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {ArticlesService} from '../articles/articles.service';
 import {Router} from '@angular/router';
-import {Observable} from 'rxjs';
 import {ArticleSummary} from '../articles/models/article-summary.model';
+import {QueryArticlesParamsDto} from '../articles/dtos/query-articles-params.dto';
+import {take} from 'rxjs/operators';
 
 @Component({
   selector: 'app-index',
@@ -11,7 +12,7 @@ import {ArticleSummary} from '../articles/models/article-summary.model';
 })
 export class IndexComponent implements OnInit {
 
-  articles$: Observable<ArticleSummary[]> = null;
+  articles: ArticleSummary[] = [];
 
   constructor(
     private readonly articlesService: ArticlesService,
@@ -20,11 +21,17 @@ export class IndexComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.articles$ = this.articlesService.queryArticles({});
     // document.addEventListener('')
   }
 
   async gotoArticleView(slug: any) {
     await this.router.navigate(['articles', slug]);
   }
+
+  fetchData = async (conditions: QueryArticlesParamsDto) => {
+    const articles = await this.articlesService.queryArticles(conditions).pipe(
+      take(1),
+    ).toPromise();
+    this.articles.push(...articles);
+  };
 }

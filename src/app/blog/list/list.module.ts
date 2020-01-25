@@ -5,13 +5,15 @@ import {ListRoutingModule} from './list-routing.module';
 import {IndexComponent} from './index.component';
 import {ArticlePreviewCardComponent} from './article-preview-card/article-preview-card.component';
 import {MomentModule} from 'ngx-moment';
+import {CoreModule} from '../../core/core.module';
 
 @NgModule({
   declarations: [IndexComponent, ArticlePreviewCardComponent],
   imports: [
     CommonModule,
     ListRoutingModule,
-    MomentModule
+    MomentModule,
+    CoreModule,
   ]
 })
 export class ListModule {
