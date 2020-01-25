@@ -1,8 +1,8 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {ArticlesService} from '../articles/articles.service';
+import {ArticlesService} from './articles.service';
 import {Router} from '@angular/router';
-import {ArticleSummary} from '../articles/models/article-summary.model';
-import {QueryArticlesParamsDto} from '../articles/dtos/query-articles-params.dto';
+import {ArticleSummary} from './models/article-summary.model';
+import {QueryArticlesParamsDto} from './dtos/query-articles-params.dto';
 import {take} from 'rxjs/operators';
 import {Observable} from 'rxjs';
 import {LoadMoreComponent} from '../../shared/load-more/load-more.component';

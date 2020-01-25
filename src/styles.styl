@@ -1,4 +1,8 @@
-/* You can add global styles to this file, and also import other style files */
+@import "./variables.styl";
+
+* {
+  user-select: inherit;
+}
 
 body {
   margin: 0;
@@ -7,4 +11,15 @@ body {
   min-height: 100vh;
   display: flex;
   flex-flow: column;
+  user-select: none;
+}
+
+a {
+  color: link-color;
+  text-decoration: none;
+  //transition: all 200ms;
+
+  &:hover {
+    //text-shadow: 1px 1px 3px #00000033;
+  }
 }

@@ -1,10 +1,24 @@
+@import "../../../variables.styl";
 ul {
   padding-left: 0;
+  font-size: 18px;
 
   li {
     list-style: none;
     margin: 10px;
     padding: 10px;
     cursor: pointer;
+  }
+}
+
+a {
+  color: black;
+  display: inline-block;
+  transition: all 100ms linear;
+
+  &:hover {
+    text-shadow: 1px 1px 5px 5px lighten(primary-color-a, 100%);
+    transform: scale(1.2);
+    transition: all 200ms ease;
   }
 }

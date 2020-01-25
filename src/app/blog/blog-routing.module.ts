@@ -8,11 +8,11 @@ const routes: Routes = [
     component: BlogComponent,
     children: [
       {
-        path: '',
-        loadChildren: './list/list.module#ListModule'
+        path: 'articles',
+        redirectTo: '',
       },
       {
-        path: 'articles',
+        path: '',
         loadChildren: './articles/articles.module#ArticlesModule',
       },
     ]
