@@ -1,4 +1,4 @@
-import {QueryBaseDto} from '../../../shared/dtos/query-base.dto';
+import {QueryBaseDto} from '../../../core/dtos/query-base.dto';
 
 export interface QueryArticlesParamsDto extends QueryBaseDto {
   title?: string;

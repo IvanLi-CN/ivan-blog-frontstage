@@ -1,7 +1,7 @@
 <ol>
-  <li (click)="gotoArticleView(article.slug)" *ngFor="let article of articles">
+  <li (click)="gotoArticleView(article.slug)" *ngFor="let article of (articles$ | async)">
     <app-article-preview-card [article]="article"></app-article-preview-card>
   </li>
 </ol>
-<app-load-more [fetchData]="fetchData"></app-load-more>
+<app-load-more #loadMore [fetchData]="fetchData"></app-load-more>
 <router-outlet></router-outlet>

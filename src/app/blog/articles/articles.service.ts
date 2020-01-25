@@ -4,13 +4,15 @@ import {Apollo} from 'apollo-angular';
 import gql from 'graphql-tag';
 import {QueryArticlesParamsDto} from './dtos/query-articles-params.dto';
 import {map} from 'rxjs/operators';
-import {ArticleSummary} from './models/article-summary.model';
 import {QueryArticleParamsDto} from './dtos/query-article-params.dto';
 import {Article} from './models/article.model';
+import {BaseListDto} from '../../core/dtos/base-list.dto';
+import {BaseRecordDto} from '../../core/dtos/base-record.dto';
+import {Observable} from 'rxjs';
 
 const GetArticlesQuery = gql`
   query articles($pageSize: Int, $pageIndex: Int, $title: String) {
-    articles(
+    records: articles(
       pageSize: $pageSize,
       pageIndex: $pageIndex,
       title: $title,
@@ -24,7 +26,12 @@ const GetArticlesQuery = gql`
         id,
         name,
       },
-    }
+    },
+    count: articlesCount(
+      pageSize: $pageSize,
+      pageIndex: $pageIndex,
+      title: $title,
+    )
   }
 `;
 const GetArticleQuery = gql`
@@ -59,11 +66,11 @@ export class ArticlesService {
   ) {
   }
 
-  queryArticles(params: QueryArticlesParamsDto) {
-    return this.apollo.watchQuery<{ articles: Array<ArticleSummary> }, QueryArticlesParamsDto>({
+  queryArticlesAndCount(params: QueryArticlesParamsDto): Observable<BaseListDto<BaseRecordDto>> {
+    return this.apollo.watchQuery<BaseListDto, QueryArticlesParamsDto>({
       query: GetArticlesQuery,
       variables: params,
-    }).valueChanges.pipe(map(res => res.data.articles));
+    }).valueChanges.pipe(map(res => res.data));
   }
 
   queryArticle(params: QueryArticleParamsDto) {
@@ -72,6 +79,6 @@ export class ArticlesService {
       errorPolicy: 'ignore',
       variables: params,
     }).valueChanges.pipe(
-      map(res => res.data && res.data.article));
+      map(res => res.data?.article));
   }
 }
