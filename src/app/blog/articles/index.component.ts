@@ -24,7 +24,7 @@ export class IndexComponent implements OnInit {
   }
 
   fetchData = (async (conditions: QueryArticlesParamsDto) => {
-    return await this.articlesService.queryArticlesAndCount(conditions).pipe(
+    return await this.articlesService.queryArticlesAndCount(Object.assign(new QueryArticlesParamsDto(), conditions)).pipe(
       take(1),
     ).toPromise();
     // this.articles.push(...articles);

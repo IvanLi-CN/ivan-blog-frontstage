@@ -60,15 +60,15 @@ type Mutation {
 
 type Query {
   account(id: Int!): [Account!]!
-  accounts(account: String, isActive: Boolean, nick: String, pageIndex: Int = 1, pageSize: Int = 10): [Account!]!
-  accountsCount(account: String, isActive: Boolean, nick: String, pageIndex: Int = 1, pageSize: Int = 10): Int!
+  accounts(account: String, createdAtOrderBy: String, isActive: Boolean, nick: String, pageIndex: Int = 1, pageSize: Int = 10): [Account!]!
+  accountsCount(account: String, createdAtOrderBy: String, isActive: Boolean, nick: String, pageIndex: Int = 1, pageSize: Int = 10): Int!
   article(id: Int, slug: String, title: String): Article!
-  articles(authorId: ID, isPublic: Boolean, pageIndex: Int = 1, pageSize: Int = 10, slug: String, title: String): [Article!]!
-  articlesCount(authorId: ID, isPublic: Boolean, pageIndex: Int = 1, pageSize: Int = 10, slug: String, title: String): Int!
-  count(name: String, pageIndex: Int = 1, pageSize: Int = 10): Int!
+  articles(authorId: ID, createdAtOrderBy: String, isPublic: Boolean, pageIndex: Int = 1, pageSize: Int = 10, slug: String, title: String): [Article!]!
+  articlesCount(authorId: ID, createdAtOrderBy: String, isPublic: Boolean, pageIndex: Int = 1, pageSize: Int = 10, slug: String, title: String): Int!
+  count(createdAtOrderBy: String, name: String, pageIndex: Int = 1, pageSize: Int = 10): Int!
   currAccount: AccountInfoDto!
   getTag(id: Int, name: String): Tag!
-  getTags(name: String, pageIndex: Int = 1, pageSize: Int = 10): [Tag!]!
+  getTags(createdAtOrderBy: String, name: String, pageIndex: Int = 1, pageSize: Int = 10): [Tag!]!
 }
 
 type Tag {

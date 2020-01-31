@@ -1,4 +1,4 @@
-export interface QueryBaseDto {
+export class QueryBaseDto {
   pageIndex?: number;
   pageSize?: number;
 }

@@ -11,11 +11,12 @@ import {BaseRecordDto} from '../../core/dtos/base-record.dto';
 import {Observable} from 'rxjs';
 
 const GetArticlesQuery = gql`
-  query articles($pageSize: Int, $pageIndex: Int, $title: String) {
+  query articles($pageSize: Int, $pageIndex: Int, $title: String, $createdAtOrderBy: String) {
     records: articles(
       pageSize: $pageSize,
       pageIndex: $pageIndex,
       title: $title,
+      createdAtOrderBy: $createdAtOrderBy,
     ) {
       title,
       id,
@@ -31,6 +32,7 @@ const GetArticlesQuery = gql`
       pageSize: $pageSize,
       pageIndex: $pageIndex,
       title: $title,
+      createdAtOrderBy: $createdAtOrderBy,
     )
   }
 `;
