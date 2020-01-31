@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {ArticleSummary} from '../../articles/models/article-summary.model';
+import {ArticleSummary} from '../models/article-summary.model';
 
 @Component({
   selector: 'app-article-preview-card',
